@@ -1,7 +1,7 @@
 # DSA-in-Java
 Data Structures & Algorithms implementations and problem-solving practice in Java.
 
-# Java Linked List Implementation(MyLinkedList)
+# Java Linked List Implementation (MyLinkedList)
 
 A custom implementation of a singly linked list in Java using OOP concepts.
 

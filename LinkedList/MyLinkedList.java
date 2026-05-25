@@ -1,47 +1,63 @@
 package LinkedList;
-public class MyLinkedList{
+import java.util.Objects;
+public class MyLinkedList<T>{
     private int size;
     private Node head;
     
     private class Node{
-        String data;
+        T data;
         Node next;
 
-        Node(String data){
+        Node(T data){
             this.data = data;
             this.next = null;
-            size++;
         }
     }
 
+    //non parameterised constructor
+    public MyLinkedList(){
+        this.size = 0;
+        this.head = null;
+    }
+
+
     //add node at first
-    public void addFirst(String data){
+    public void addFirst(T data){
         Node newNode = new Node(data);
-        if(head == null){
+
+        if(isEmpty()){
             head = newNode;
+            size++;
             return;
         }
+
         newNode.next = head;
         head = newNode;
-
+        size++;
     }
 
     //add node at last
-    public void addLast(String data){
+    public void addLast(T data){
         Node newNode = new Node(data);
-        if(head == null){
+
+        if(isEmpty()){
             head = newNode;
+            size++;
             return;
         }
+
         Node currentNode = head;
+        //traverse to end
         while(currentNode.next != null){
             currentNode = currentNode.next;
         }
+
         currentNode.next = newNode;
+        size++;
     }
 
     //add node at a location
-    public void add(int index, String data){
+    public void add(int index, T data){
 
         if(index > size || index < 0){
             System.out.println("Invalid location");
@@ -49,9 +65,12 @@ public class MyLinkedList{
         }
 
         Node newNode = new Node(data);
+
         if(index == 0){
             newNode.next = head;
             head = newNode;
+            size++;
+
             return;
         }
 
@@ -61,13 +80,16 @@ public class MyLinkedList{
             currentNode = currentNode.next;
             index--;
         }
+
         newNode.next = currentNode.next;
         currentNode.next = newNode;
+
+        size++;
     }
 
     //delete firstnode
     public void removeFirst(){
-        if(head == null){
+        if(isEmpty()){
             System.out.println("List is empty!");
             return;
         }
@@ -77,7 +99,7 @@ public class MyLinkedList{
 
     //delete at last
     public void removeLast(){
-        if(head == null){
+        if(isEmpty()){
             System.out.println("List is empty!");
             return;
         }
@@ -94,8 +116,7 @@ public class MyLinkedList{
     }
 
     //delete at a location
-    public void remove(int index){
-        
+    public void remove(int index){        
         if(index >= size || index < 0){
             System.out.println("Invalid location");
             return;
@@ -106,30 +127,28 @@ public class MyLinkedList{
             return;
         }
 
-        Node currentNode = head;
-        Node nextNode = currentNode.next;
-        while(index-1 !=0 && nextNode.next != null){
-            currentNode = currentNode.next;
-            nextNode = nextNode.next;
-            index--;
+        Node temp = head;
+
+        for(int i = 0; i < index - 1; i++){
+            temp = temp.next;
         }
 
+        temp.next = temp.next.next;
         size--;
-        currentNode.next = nextNode.next;
     }
     
 
     //peek value at first
-    public String getFirst(){
-        if(head == null){
+    public T getFirst(){
+        if(isEmpty()){
             return null;
         }
         return head.data;
     }
 
     //peek at end
-    public String getLast(){
-        if(head == null){
+    public T getLast(){
+        if(isEmpty()){
             return null;
         }
 
@@ -142,7 +161,7 @@ public class MyLinkedList{
     }
 
     //get at a position
-    public String get(int index){
+    public T get(int index){
         if(index >= size || index < 0){
             return null;
         }
@@ -159,15 +178,16 @@ public class MyLinkedList{
     }
 
     //is searched element pesent in linklist
-    public boolean contains(String data){
-        if(size == 0){
+    public boolean contains(T data){
+        if(isEmpty()){
             return false;
         }
 
         Node temp = head;
 
         while(temp != null){
-            if(data.equals(temp.data)){
+            //to avoid null crash problem used Objects.equals()
+            if(Objects.equals(temp.data,data)){
                 return true;
             }
 
@@ -177,28 +197,6 @@ public class MyLinkedList{
         return false;
     }
 
-    //print
-    public void printList(){
-        if(head == null){
-            System.out.println("List is empty");
-            return;
-        }
-
-        Node currNode = head;
-
-        while(currNode != null){
-            System.out.print(currNode.data);
-
-            if(currNode.next != null){
-                System.out.print(" -> ");
-            }
-
-            currNode = currNode.next;
-        }
-
-        System.out.println();
-    }
-
 
     //Reverse by recursion
     public void reverseRecursive(){
@@ -206,7 +204,7 @@ public class MyLinkedList{
     }
 
     private Node reverseRecursive(Node Head){
-        if(Head == null || Head.next == null ){
+        if( Head == null || Head.next == null ){
             return Head;
         }
 
@@ -221,7 +219,7 @@ public class MyLinkedList{
     
     //Reverse by itereation
     public void reverse(){
-        if(head == null || head.next == null){
+        if(isEmpty() || head.next == null){
             return;
         }
 
@@ -255,19 +253,42 @@ public class MyLinkedList{
         size = 0;
     }
 
+    //to print list directly SOP(list)
+    @Override
+    public String toString(){
+        if(isEmpty()){
+            return "[]";
+        }
 
-    //non parameterised constructor
-    MyLinkedList(){
-        this.size = 0;
-        this.head = null;
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("[");
+
+        Node temp = head;
+
+        while(temp != null){
+            sb.append(temp.data);
+
+            if(temp.next != null){
+                sb.append(", ");
+            }
+
+            temp = temp.next;
+        }
+
+        sb.append("]");
+
+        return sb.toString();
     }
+
 
 
     public static void main(String[] args){
-        MyLinkedList list = new MyLinkedList();
+        MyLinkedList<String> list = new MyLinkedList<>();
         list.addLast("I");
         list.addLast("am");
-        list.printList();
-    }
-    
+        System.out.println(list);
+
+
+    } 
 }
