@@ -36,3 +36,37 @@ A custom implementation of a singly linked list in Java using OOP concepts.
 ```text
 LinkedList/
  └── MyLinkedList.java
+```
+
+# Java HashMap Implementation (MyHashMap)
+
+A custom implementation of a HashMap in Java using separate chaining and rehashing.
+
+## Features
+
+- Put key-value pairs
+- Get value using key
+- Remove key-value pair
+- Check key existence using containsKey()
+- Get all keys using keySet()
+- Handle collisions using separate chaining
+- Automatic rehashing
+- Generic implementation using `<K, V>`
+- Custom toString() support
+
+## Concepts Used
+
+- Hashing
+- Collision Handling
+- Separate Chaining
+- Rehashing
+- Generics
+- Load Factor / Lambda
+- Time Complexity Optimization
+
+## Project Structure
+
+```text
+HashMap/
+ └── MyHashMap.java
+```
