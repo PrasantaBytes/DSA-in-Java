@@ -38,6 +38,7 @@ LinkedList/
  └── MyLinkedList.java
 ```
 
+
 # Java HashMap Implementation (MyHashMap)
 
 A custom implementation of a HashMap in Java using separate chaining and rehashing.
@@ -69,4 +70,44 @@ A custom implementation of a HashMap in Java using separate chaining and rehashi
 ```text
 HashMap/
  └── MyHashMap.java
+```
+
+
+# Java HashSet Implementation (MyHashSet)
+
+A custom implementation of a HashSet in Java using separate chaining and dynamic rehashing.
+
+## Features
+
+- Add elements using add()
+- Remove elements using remove()
+- Check element existence using contains()
+- Get total number of elements using size()
+- Check if set is empty using isEmpty()
+- Clear all elements using clear()
+- Prevent duplicate elements
+- Handle collisions using separate chaining
+- Automatic rehashing based on load factor
+- Generic implementation using `<K>`
+- Custom Iterator support
+- Enhanced for-each loop support
+- Custom toString() support
+
+## Concepts Used
+
+- Hashing
+- Collision Handling
+- Separate Chaining
+- Rehashing
+- Generics
+- Iterable Interface
+- Iterator
+- Load Factor
+- Time Complexity Optimization
+
+## Project Structure
+
+```text
+HashSet/
+ └── MyHashSet.java
 ```
